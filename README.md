@@ -22,6 +22,8 @@ ngrok http 3000
 SLACK_SIGNING_SECRET=get from Basic Info page
 SLACK_BOT_TOKEN=get from OAuth & Permissions page
 DOCBASE_TOKEN=docbase token
+DOCBASE_DOMAIN=
+DOCBASE_TEAM_NAME=
 ```
 
 ### OAuth & Permissions
