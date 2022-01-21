@@ -1,5 +1,6 @@
 import { SayArguments } from "@slack/bolt";
 import { DocbasePost } from "../docbaseTypes";
+// import slackify from "slackify-markdown";
 
 const WORDS_PER_MIN = 500;
 
@@ -12,17 +13,16 @@ export const overview = (post: DocbasePost): SayArguments => {
           {
             type: "header",
             text: {
-              type: "plain_text",
-              text: post.title,
-              emoji: true,
+              type: "mrkdwn",
+              text: `<${post.url}|${post.title}>`,
             },
           },
           {
             type: "section",
             text: {
-              type: "plain_text",
-              text: post.body.slice(0, 100),
-              emoji: true,
+              type: "mrkdwn",
+              // text: slackify(post.body.slice(0, 1000)),
+              text: post.body.slice(0, 1000),
             },
           },
           {
