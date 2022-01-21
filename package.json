@@ -1,0 +1,10 @@
+{
+  "name": "doclack",
+  "version": "0.0.1",
+  "description": "docbase-slack-app",
+  "main": "index.js",
+  "repository": "ssh://git@github.com/Yasai-T/doclack.git",
+  "author": "tomoki <sk.mk.ys.mt@gmail.com>",
+  "license": "MIT",
+  "private": true
+}
