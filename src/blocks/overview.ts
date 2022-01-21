@@ -1,6 +1,6 @@
 import { SayArguments } from "@slack/bolt";
 import { DocbasePost } from "../docbaseTypes";
-// import slackify from "slackify-markdown";
+import slackify from "slackify-markdown";
 
 const WORDS_PER_MIN = 500;
 
@@ -11,18 +11,17 @@ export const overview = (post: DocbasePost): SayArguments => {
         color: "#304764",
         blocks: [
           {
-            type: "header",
+            type: "section",
             text: {
               type: "mrkdwn",
-              text: `<${post.url}|${post.title}>`,
+              text: `*<${post.url}|${post.title}>*`,
             },
           },
           {
             type: "section",
             text: {
               type: "mrkdwn",
-              // text: slackify(post.body.slice(0, 1000)),
-              text: post.body.slice(0, 1000),
+              text: slackify(post.body.slice(0, 1500)),
             },
           },
           {
@@ -30,44 +29,23 @@ export const overview = (post: DocbasePost): SayArguments => {
             fields: [
               {
                 type: "mrkdwn",
-                text: "🔑 *Scope*",
+                text: `🔑 *Scope*: ${post.scope}`,
               },
               {
                 type: "mrkdwn",
-                text: "🏷 *Tags*",
-              },
-              {
-                type: "plain_text",
-                text: post.scope,
-                emoji: true,
-              },
-              {
-                type: "plain_text",
-                text: post.tags.map(({ name }) => name).join(", "),
-                emoji: true,
-              },
-            ],
-          },
-          {
-            type: "section",
-            fields: [
-              {
-                type: "mrkdwn",
-                text: "📝 *Comments*",
+                text: `🏷 *Tags*: ${post.tags
+                  .map(({ name }) => name)
+                  .join(", ")}`,
               },
               {
                 type: "mrkdwn",
-                text: "⏱ *Reading time*",
+                text: `📝 *Comments*: ${post.comments.length}`,
               },
               {
-                type: "plain_text",
-                text: post.comments.length.toString(),
-                emoji: true,
-              },
-              {
-                type: "plain_text",
-                text: `${Math.ceil(post.body.length / WORDS_PER_MIN)} min`,
-                emoji: true,
+                type: "mrkdwn",
+                text: `⏱ *Reading time*: ${Math.ceil(
+                  post.body.length / WORDS_PER_MIN
+                )} min`,
               },
             ],
           },
