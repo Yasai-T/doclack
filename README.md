@@ -6,7 +6,7 @@
 cp .env.tmp .env
 
 yarn
-yarn start
+yarn dev
 
 ngrok http 3000
 ```
