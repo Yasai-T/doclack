@@ -1,5 +1,7 @@
 # [WIP] doclack
 
+Unleash the potential of docbase
+
 ## develop
 
 ```bash
@@ -51,7 +53,7 @@ DOCBASE_TEAM_NAME=
 
 ### Slash Commands
 
-- `/doclack_login`
+- `/doclack`
   - Request URL: `https://~~~~~~~~~~.ngrok.io/slack/events`
 
 ### Interactivity & Shortcuts

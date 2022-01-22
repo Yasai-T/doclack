@@ -1,6 +1,7 @@
 import "./utils/env";
 import { App, LogLevel } from "@slack/bolt";
 import { overviewListener } from "./overviewListener";
+import { slashCommands } from "./slashCommands";
 
 const app = new App({
   token: process.env.SLACK_BOT_TOKEN,
@@ -15,6 +16,8 @@ app.use(async ({ next }) => {
   // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
   await next!();
 });
+
+app.command("/doclack", slashCommands);
 
 // The bot returns a summary of the article that only the user can see
 const regex = new RegExp(`https://${process.env.DOCBASE_DOMAIN}/posts/`);
