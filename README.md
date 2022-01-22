@@ -48,3 +48,12 @@ DOCBASE_TEAM_NAME=
 - `message.groups` to private channels
 - `message.im` to DM
 - `message.mpim` to Group DM
+
+### Slash Commands
+
+- `/doclack_login`
+  - Request URL: `https://~~~~~~~~~~.ngrok.io/slack/events`
+
+### Interactivity & Shortcuts
+
+`https://~~~~~~~~~~.ngrok.io/slack/events`
