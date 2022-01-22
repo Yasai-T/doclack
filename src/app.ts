@@ -22,7 +22,7 @@ app.use(async ({ next }) => {
 const regex = new RegExp(`https://${process.env.DOCBASE_DOMAIN}/posts/`);
 
 // Listens to incoming messages that matches regex
-app.message(regex, async ({ message, say }) => {
+app.message(regex, async ({ message, client }) => {
   // Filter out message events with subtypes (see https://api.slack.com/events/message)
   // Is there a way to do this in listener middleware with current type system?
   if (!isGenericMessageEvent(message)) return;
@@ -67,7 +67,11 @@ app.message(regex, async ({ message, say }) => {
   await Promise.all(
     posts.map(({ data: post }) => {
       if (!isPost(post)) return;
-      say(overview(post));
+      client.chat.postEphemeral({
+        channel: message.channel,
+        user: message.user,
+        attachments: overview(post).attachments,
+      });
     })
   );
 });
